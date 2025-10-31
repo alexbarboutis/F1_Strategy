@@ -1,0 +1,18 @@
+race:
+  name: "Monaco GP"
+  laps: 70
+  base_lap_time: 90.0      # seconds
+  track_temperature: 35.0  # degrees Celsius
+  pit_lane_time: 22.0      # seconds lost in pit stop
+  weather: "dry"           # options: dry, wet, mixed
+
+cars:
+  - name: "Car 1"
+    tire: "soft"
+    fuel_capacity: 100.0
+  - name: "Car 2"
+    tire: "medium"
+    fuel_capacity: 100.0
+  - name: "Car 3"
+    tire: "hard"
+    fuel_capacity: 100.0

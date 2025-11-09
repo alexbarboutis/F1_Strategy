@@ -8,12 +8,13 @@ class Car:
     Handles tire, fuel, lap time calculation, and pit stops.
     """
 
-    def __init__(self, name: str, driver: Driver, tire_type: str = "medium", position: int = 0):
+    def __init__(self, name: str, driver: Driver, tire_type: str = "medium", position: int = 0, gap: float = 0):
         self.name = name
         self.driver = driver
         self.tire = Tire(tire_type)
         self.position = position
         self.lap_time = 0
+        self.gap = gap # Gap to front driver
 
 
     def do_lap(self, base_lap_time: float) -> float:

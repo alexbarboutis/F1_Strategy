@@ -2,18 +2,18 @@ race:
   name: "Monaco GP"
   laps: 70
   base_lap_time: 90.0      # seconds
-  pit_lane_time: 22.0      # seconds lost in pit stop
+  pit_stop_time: 20.0      # seconds lost in pit stop
 
 cars:
   - name: "Car 1"
     driver: "Driver 1"
-    ability: 0.95
-    tire: "soft"
+    ability: 0.6
+    tire: "hard"
   - name: "Car 2"
     driver: "Driver 2"
-    ability: 0.90
+    ability: 0.99
     tire: "medium"
   - name: "Car 3"
     driver: "Driver 3"
-    ability: 0.85
-    tire: "hard"
+    ability: 0.95
+    tire: "soft"

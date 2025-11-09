@@ -8,9 +8,9 @@ class Tire:
 
     # Tire wear rates and performance modifiers per type
     tire_specs = {
-        "soft": {"wear_rate": 0.4, "performance": -1},   # fast but wears quickly
+        "soft": {"wear_rate": 0.4, "performance": -0.5},   # fast but wears quickly
         "medium": {"wear_rate": 0.3, "performance": 0.0},  # balanced
-        "hard": {"wear_rate": 0.2, "performance": 1},    # slower but durable
+        "hard": {"wear_rate": 0.2, "performance": 0.5},    # slower but durable
     }
 
     def __init__(self, tire_type: str = "medium"):

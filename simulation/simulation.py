@@ -1,4 +1,3 @@
-import math
 import random
 from simulation.car import Car
 from simulation.driver import Driver
@@ -21,6 +20,8 @@ class RaceSimulation:
 
         self.current_lap = 0
         self.order_history = []  # list of per-lap snapshots: [(name, lap_time), ...] in final order
+        
+        self.order_history.append([(car.name, car.gap) for car in self.cars])
 
     def _initialize_cars(self):
         """Create Car objects from configuration file."""
@@ -34,6 +35,7 @@ class RaceSimulation:
                 ),
                 tire_type=car_info["tire"],
                 position=index + 1,  # start as 1-based grid positions
+                gap=0.25*index,
             )
             cars.append(car)
         return cars
@@ -46,15 +48,25 @@ class RaceSimulation:
         for i in range(len(self.cars)):
             self.cars[i].do_lap(self.base_lap_time)
 
-        # Update order by this-lap time
-        self.cars.sort(key=lambda car: car.lap_time)
+        for i in range(len(self.cars)-1):
+            self.cars[i + 1].gap = self.cars[i + 1].gap + (self.cars[i+1].lap_time - self.cars[i].lap_time)
 
+        
+        for car in self.cars: print(f"test: {car.gap}") 
+
+        # Update order by this-lap time
+        self.cars.sort(key=lambda car: car.gap)
+
+        if (self.cars[0].gap < 0):
+            for i in range(len(self.cars)-1):
+                self.cars[i].gap -= self.cars[0].gap
+            
         # Update positions to reflect the new order (dense 1..N)
         for index, car in enumerate(self.cars):
             car.position = index + 1
 
         # Store snapshot for plotting/hover: list of (name, lap_time) in final order
-        self.order_history.append([(car.name, car.lap_time) for car in self.cars])
+        self.order_history.append([(car.name, car.gap) for car in self.cars])
 
         self.current_lap += 1
 
@@ -63,8 +75,6 @@ class RaceSimulation:
         if not self.order_history:
             print("No laps recorded. Run the simulation first.")
             return
-
-        import matplotlib.pyplot as plt
 
         laps_recorded = len(self.order_history)
         plt.figure(figsize=(10, 6))
@@ -86,8 +96,8 @@ class RaceSimulation:
             ax.plot(x, times, marker="o", linewidth=2, label=name)
 
         ax.set_xlabel("Lap")
-        ax.set_ylabel("Lap time (s)")
-        ax.set_title("Lap Times by Driver")
+        ax.set_ylabel("Gap time (s)")
+        ax.set_title("Gap Times by Driver")
         ax.grid(True, linestyle="--", alpha=0.4)
         ax.legend(title="Driver", bbox_to_anchor=(1.02, 1), loc="upper left")
         plt.tight_layout()

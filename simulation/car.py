@@ -8,16 +8,19 @@ class Car:
     Handles tire, fuel, lap time calculation, and pit stops.
     """
 
-    def __init__(self, name: str, driver: Driver, tire_type: str = "medium"):
+    def __init__(self, name: str, driver: Driver, tire_type: str = "medium", position: int = 0):
         self.name = name
         self.driver = driver
         self.tire = Tire(tire_type)
+        self.position = position
+        self.lap_time = 0
 
 
-    def get_lap_time(self, base_lap_time: float) -> float:
+    def do_lap(self, base_lap_time: float) -> float:
         """
         Calculate lap time based on base time, tire performance, and driver ability.
         """
-        lap_time = base_lap_time + self.tire.get_performance_modifier() / self.driver.ability
-
-        return lap_time
+        self.lap_time = base_lap_time + self.tire.get_performance_modifier() / self.driver.ability
+        
+        # Simulate tire wear
+        self.tire.wear_one_lap()

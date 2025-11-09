@@ -15,5 +15,5 @@ cars:
     tire: "medium"
   - name: "Car 3"
     driver: "Driver 3"
-    ability: 0.92
+    ability: 0.85
     tire: "hard"

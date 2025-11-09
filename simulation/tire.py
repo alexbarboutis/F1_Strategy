@@ -8,8 +8,8 @@ class Tire:
 
     # Tire wear rates and performance modifiers per type
     tire_specs = {
-        "soft": {"wear_rate": 0.3, "performance": -1},   # fast but wears quickly
-        "medium": {"wear_rate": 0.25, "performance": 0.0},  # balanced
+        "soft": {"wear_rate": 0.4, "performance": -1},   # fast but wears quickly
+        "medium": {"wear_rate": 0.3, "performance": 0.0},  # balanced
         "hard": {"wear_rate": 0.2, "performance": 1},    # slower but durable
     }
 

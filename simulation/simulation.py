@@ -1,8 +1,8 @@
 import math
 import random
-from car import Car
-from driver import Driver
-from utils import load_race_config
+from simulation.car import Car
+from simulation.driver import Driver
+from simulation.utils import load_race_config
 import matplotlib.pyplot as plt
 
 

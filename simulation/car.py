@@ -1,5 +1,5 @@
-from tire import Tire
-from driver import Driver
+from simulation.tire import Tire
+from simulation.driver import Driver
 
 
 class Car:
